@@ -30,12 +30,10 @@ class MarsRovers{
         const firstCommand = commands[0];
         const restCommands = commands.slice(1);
         if(firstCommand === 'b'){
-            this._position = new Position(0,-1);
-            return
+            this._position = this._position.substractInY();
+        }else if(firstCommand == 'f'){
+            this._position = this._position.addInY();
         }
-
-        this._position = this._position.addInY();
-
         this.applyCommands(restCommands);
     }
 }
