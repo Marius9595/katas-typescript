@@ -26,5 +26,17 @@ describe("Mars Rovers should",()=>{
 		expect(marsRovers.position).toStrictEqual(new Position(0,1));
 		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
 	})
+
+	test("move backward", () => {
+		const initialPosition = new Position(0,0);
+		const initialOrientation = new NorthFacing();
+		const marsRovers = MarsRovers.at(initialPosition, initialOrientation);
+
+		const moveBackward = ['b'];
+		marsRovers.applyCommands(moveBackward);
+
+		expect(marsRovers.position).toStrictEqual(new Position(0,-1));
+		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+	})
 })
 
