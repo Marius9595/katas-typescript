@@ -1,11 +1,12 @@
 import Position from "./valueObjects/Position";
 import Orientation from "./orientation/Orientation";
+import WestFacing from "./orientation/WestFacing";
 
 class MarsRovers{
 
     private constructor(
         private _position: Position,
-        private readonly  _orientation: Orientation
+        private _orientation: Orientation
     ) {
     }
 
@@ -33,6 +34,8 @@ class MarsRovers{
             this._position = this._position.substractInY();
         }else if(firstCommand == 'f'){
             this._position = this._position.addInY();
+        }else if(firstCommand == 'l'){
+            this._orientation = new WestFacing();
         }
         this.applyCommands(restCommands);
     }
