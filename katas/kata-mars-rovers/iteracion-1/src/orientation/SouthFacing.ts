@@ -4,10 +4,10 @@ import EastFacing from "./EastFacing";
 import Position from "../valueObjects/Position";
 
 class SouthFacing implements Orientation{
-    positionBackwardTo(position: Position): Position {
+    nextBackwardPositionRespectTo(position: Position): Position {
         return undefined;
     }
-    positionForwardTo(position: Position): Position {
+    nextForwardPositionRespectTo(position: Position): Position {
         return undefined;
     }
     toTheLeft() {
