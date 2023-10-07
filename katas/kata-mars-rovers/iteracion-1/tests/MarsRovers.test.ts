@@ -3,11 +3,16 @@ import NorthFacing from "../src/orientation/NorthFacing";
 import MarsRovers from "../src/MarsRovers";
 
 describe("Mars Rovers should",()=>{
-	test("do nothing without commands", ()=>{
-		const initialPosition = new Position(0,0);
-		const initialOrientation = new NorthFacing();
-		const marsRovers = MarsRovers.at(initialPosition, initialOrientation);
+	let initialPosition: Position;
+	let initialOrientation = new NorthFacing();
+	let marsRovers: MarsRovers;
+	beforeEach(() => {
+		initialPosition = new Position(0,0);
+		initialOrientation = new NorthFacing();
+		marsRovers = MarsRovers.at(initialPosition, initialOrientation);
+	})
 
+	test("do nothing without commands", ()=>{
 		const noCommands = [];
 		marsRovers.applyCommands(noCommands);
 
@@ -16,10 +21,6 @@ describe("Mars Rovers should",()=>{
 	})
 
 	test("move forward", () =>{
-		const initialPosition = new Position(0,0);
-		const initialOrientation = new NorthFacing();
-		const marsRovers = MarsRovers.at(initialPosition, initialOrientation);
-
 		const moveForward = ['f'];
 		marsRovers.applyCommands(moveForward);
 
@@ -28,10 +29,6 @@ describe("Mars Rovers should",()=>{
 	})
 
 	test("move backward", () => {
-		const initialPosition = new Position(0,0);
-		const initialOrientation = new NorthFacing();
-		const marsRovers = MarsRovers.at(initialPosition, initialOrientation);
-
 		const moveBackward = ['b'];
 		marsRovers.applyCommands(moveBackward);
 
