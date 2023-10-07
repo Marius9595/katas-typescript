@@ -2,6 +2,7 @@ import Position from "../src/valueObjects/Position";
 import NorthFacing from "../src/orientation/NorthFacing";
 import MarsRovers from "../src/MarsRovers";
 import WestFacing from "../src/orientation/WestFacing";
+import EastFacing from "../src/orientation/EastFacing";
 
 describe("Mars Rovers should",()=>{
 	let initialPosition: Position;
@@ -59,6 +60,14 @@ describe("Mars Rovers should",()=>{
 
 		expect(marsRovers.position).toStrictEqual(initialPosition);
 		expect(marsRovers.orientation).toStrictEqual(new WestFacing());
+	})
+
+	test("turn right", () => {
+		const turnRight = ['r'];
+		marsRovers.applyCommands(turnRight);
+
+		expect(marsRovers.position).toStrictEqual(initialPosition);
+		expect(marsRovers.orientation).toStrictEqual(new EastFacing());
 	})
 })
 
