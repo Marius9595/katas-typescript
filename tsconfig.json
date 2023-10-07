@@ -9,7 +9,7 @@
         "outDir":"./lib/"
     },
     "include": [
-        "src/**/*"
+      "katas/**/*"
     ],
     "exclude": [
         "node_modules",
