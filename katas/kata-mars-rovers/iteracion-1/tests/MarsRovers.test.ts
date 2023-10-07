@@ -35,5 +35,13 @@ describe("Mars Rovers should",()=>{
 		expect(marsRovers.position).toStrictEqual(new Position(0,-1));
 		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
 	})
+
+	test("move forward multiple times", () => {
+		const moveForwardMultipleTimes = ['f','f','f'];
+		marsRovers.applyCommands(moveForwardMultipleTimes);
+
+		expect(marsRovers.position).toStrictEqual(new Position(0,moveForwardMultipleTimes.length));
+		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+	})
 })
 
