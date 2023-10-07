@@ -1,7 +1,5 @@
 import Position from "./valueObjects/Position";
 import Orientation from "./orientation/Orientation";
-import WestFacing from "./orientation/WestFacing";
-import EastFacing from "./orientation/EastFacing";
 
 class MarsRovers{
 
@@ -31,16 +29,32 @@ class MarsRovers{
 
         const firstCommand = commands[0];
         const restCommands = commands.slice(1);
-        if(firstCommand === 'b'){
+        if(this.isMoveForward(firstCommand)){
             this._position = this._position.substractInY();
-        }else if(firstCommand == 'f'){
+        }else if(this.isBackward(firstCommand)){
             this._position = this._position.addInY();
-        }else if(firstCommand == 'l'){
+        }else if(this.isTurnleft(firstCommand)){
             this._orientation = this._orientation.toTheLeft();
-        }else if(firstCommand == 'r'){
+        }else if(this.isTurnRight(firstCommand)){
             this._orientation = this._orientation.toTheRight();
         }
         this.applyCommands(restCommands);
+    }
+
+    private isTurnRight(firstCommand: string) {
+        return firstCommand == 'r';
+    }
+
+    private isTurnleft(firstCommand: string) {
+        return firstCommand == 'l';
+    }
+
+    private isBackward(firstCommand: string) {
+        return firstCommand == 'f';
+    }
+
+    private isMoveForward(firstCommand: string) {
+        return firstCommand === 'b';
     }
 }
 
