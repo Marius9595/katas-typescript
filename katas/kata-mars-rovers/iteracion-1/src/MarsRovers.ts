@@ -1,12 +1,10 @@
 import Position from "./valueObjects/Position";
 import Orientation from "./orientation/Orientation";
-import position from "./valueObjects/Position";
-import orientation from "./orientation/Orientation";
 
 class MarsRovers{
 
     private constructor(
-        private readonly  _position: Position,
+        private _position: Position,
         private readonly  _orientation: Orientation
     ) {
     }
@@ -25,7 +23,10 @@ class MarsRovers{
     }
 
     applyCommands(commands: string[]) {
-
+        if(commands.length === 0){
+            return
+        }
+        this._position = new Position(0,1);
     }
 }
 
