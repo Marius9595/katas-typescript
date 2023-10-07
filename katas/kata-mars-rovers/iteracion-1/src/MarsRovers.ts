@@ -38,7 +38,7 @@ class MarsRovers{
         }else if(firstCommand == 'l'){
             this._orientation = new WestFacing();
         }else if(firstCommand == 'r'){
-            this._orientation = new EastFacing();
+            this._orientation = this._orientation.toTheRight();
         }
         this.applyCommands(restCommands);
     }
