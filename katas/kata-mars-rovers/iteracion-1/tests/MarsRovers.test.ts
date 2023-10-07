@@ -69,5 +69,13 @@ describe("Mars Rovers should",()=>{
 		expect(marsRovers.position).toStrictEqual(initialPosition);
 		expect(marsRovers.orientation).toStrictEqual(new EastFacing());
 	})
+
+	test('turn right multiple times to get the same orientation', ()=>{
+		const turnRightUntilGetSameInitialOrientation = ['r','r','r','r'];
+		marsRovers.applyCommands(turnRightUntilGetSameInitialOrientation);
+
+		expect(marsRovers.position).toStrictEqual(initialPosition);
+		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+	})
 })
 
