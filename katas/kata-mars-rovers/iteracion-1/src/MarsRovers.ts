@@ -32,7 +32,7 @@ class MarsRovers{
         if(this.isMoveForward(firstCommand)){
             this._position = this._orientation.positionForwardTo(this._position);
         }else if(this.isBackward(firstCommand)){
-            this._position = this._position.substractInY();
+            this._position = this._orientation.positionBackwardTo(this._position);
         }else if(this.isTurnleft(firstCommand)){
             this._orientation = this._orientation.toTheLeft();
         }else if(this.isTurnRight(firstCommand)){

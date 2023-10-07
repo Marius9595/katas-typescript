@@ -4,6 +4,9 @@ import WestFacing from "./WestFacing";
 import Position from "../valueObjects/Position";
 
 class NorthFacing implements Orientation{
+    positionBackwardTo(position: Position): Position {
+        return position.substractInY();
+    }
     positionForwardTo(position: Position): Position {
         return position.addInY();
     }
