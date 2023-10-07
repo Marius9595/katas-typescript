@@ -11,6 +11,10 @@ class Position{
     substractInY() {
         return new Position(this.x, this.y - 1);
     }
+
+    substractInX() {
+        return new Position(this.x - 1, this.y);
+    }
 }
 
 export default Position;

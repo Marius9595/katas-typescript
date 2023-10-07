@@ -30,9 +30,9 @@ class MarsRovers{
         const firstCommand = commands[0];
         const restCommands = commands.slice(1);
         if(this.isMoveForward(firstCommand)){
-            this._position = this._position.substractInY();
+            this._position = this._orientation.positionForwardTo(this._position);
         }else if(this.isBackward(firstCommand)){
-            this._position = this._position.addInY();
+            this._position = this._position.substractInY();
         }else if(this.isTurnleft(firstCommand)){
             this._orientation = this._orientation.toTheLeft();
         }else if(this.isTurnRight(firstCommand)){
@@ -50,11 +50,11 @@ class MarsRovers{
     }
 
     private isBackward(firstCommand: string) {
-        return firstCommand == 'f';
+        return firstCommand == 'b';
     }
 
     private isMoveForward(firstCommand: string) {
-        return firstCommand === 'b';
+        return firstCommand === 'f';
     }
 }
 
