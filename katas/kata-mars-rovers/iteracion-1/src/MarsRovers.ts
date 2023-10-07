@@ -1,6 +1,7 @@
 import Position from "./valueObjects/Position";
 import Orientation from "./orientation/Orientation";
 import WestFacing from "./orientation/WestFacing";
+import EastFacing from "./orientation/EastFacing";
 
 class MarsRovers{
 
@@ -36,6 +37,8 @@ class MarsRovers{
             this._position = this._position.addInY();
         }else if(firstCommand == 'l'){
             this._orientation = new WestFacing();
+        }else if(firstCommand == 'r'){
+            this._orientation = new EastFacing();
         }
         this.applyCommands(restCommands);
     }
