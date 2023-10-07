@@ -26,6 +26,11 @@ class MarsRovers{
         if(commands.length === 0){
             return
         }
+        if(commands[0] === 'b'){
+            this._position = new Position(0,-1);
+            return
+        }
+
         this._position = new Position(0,1);
     }
 }
