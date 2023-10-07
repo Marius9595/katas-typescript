@@ -26,12 +26,17 @@ class MarsRovers{
         if(commands.length === 0){
             return
         }
-        if(commands[0] === 'b'){
+
+        const firstCommand = commands[0];
+        const restCommands = commands.slice(1);
+        if(firstCommand === 'b'){
             this._position = new Position(0,-1);
             return
         }
 
-        this._position = new Position(0,1);
+        this._position = this._position.addInY();
+
+        this.applyCommands(restCommands);
     }
 }
 
