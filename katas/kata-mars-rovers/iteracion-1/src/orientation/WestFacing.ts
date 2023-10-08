@@ -4,6 +4,9 @@ import SouthFacing from "./SouthFacing";
 import Position from "../valueObjects/Position";
 
 class WestFacing implements Orientation{
+    cardinalSymbol(): string {
+        return "W";
+    }
     nextBackwardPositionRespectTo(position: Position): Position {
         return position.addInX();
     }

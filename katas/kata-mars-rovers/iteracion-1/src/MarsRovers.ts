@@ -9,22 +9,13 @@ class MarsRovers{
     ) {
     }
 
-
-    get position(): Position {
-        return this._position;
-    }
-
-    get orientation(): Orientation {
-        return this._orientation;
-    }
-
     static at(position: Position, orientation: Orientation) {
         return new MarsRovers(position,orientation);
     }
 
     applyCommands(commands: string[]) {
         if(commands.length === 0){
-            return
+            return `${this._position.x}:${this._position.y}:${this._orientation.cardinalSymbol()}`
         }
 
         const firstCommand = commands[0];
@@ -38,7 +29,7 @@ class MarsRovers{
         }else if(this.hasToTurnRightDueTo(firstCommand)){
             this._orientation = this._orientation.toTheRight();
         }
-        this.applyCommands(restCommands);
+        return this.applyCommands(restCommands);
     }
 
     private hasToTurnRightDueTo(firstCommand: string) {

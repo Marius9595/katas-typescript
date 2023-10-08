@@ -1,23 +1,31 @@
 class Position{
     constructor(
-        private readonly x: number,
-        private readonly y: number) {
+        private readonly _x: number,
+        private readonly _y: number) {
+    }
+
+    get x(){
+        return this._x;
+    }
+
+    get y(){
+        return this._y;
     }
 
     addInY() {
-        return new Position(this.x, this.y + 1);
+        return new Position(this.x, this._y + 1);
     }
 
     substractInY() {
-        return new Position(this.x, this.y - 1);
+        return new Position(this.x, this._y - 1);
     }
 
     substractInX() {
-        return new Position(this.x - 1, this.y);
+        return new Position(this.x - 1, this._y);
     }
 
     addInX() {
-        return new Position(this.x + 1, this.y);
+        return new Position(this.x + 1, this._y);
     }
 }
 

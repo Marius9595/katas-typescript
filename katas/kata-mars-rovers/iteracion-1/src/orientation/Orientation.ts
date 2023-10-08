@@ -5,6 +5,7 @@ interface Orientation {
   toTheLeft();
   nextForwardPositionRespectTo(position: Position): Position;
   nextBackwardPositionRespectTo(position: Position): Position;
+  cardinalSymbol():string
 }
 
 export default Orientation
