@@ -22,20 +22,38 @@ describe("Mars Rovers should",()=>{
 		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
 	})
 
-	test("move forward", () =>{
-		const moveForward = ['f'];
-		marsRovers.applyCommands(moveForward);
+	describe("execute the single commands:",()=>{
+		test("move forward", () =>{
+			const moveForward = ['f'];
+			marsRovers.applyCommands(moveForward);
 
-		expect(marsRovers.position).toStrictEqual(new Position(0,1));
-		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
-	})
+			expect(marsRovers.position).toStrictEqual(new Position(0,1));
+			expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+		})
 
-	test("move backward", () => {
-		const moveBackward = ['b'];
-		marsRovers.applyCommands(moveBackward);
+		test("move backward", () => {
+			const moveBackward = ['b'];
+			marsRovers.applyCommands(moveBackward);
 
-		expect(marsRovers.position).toStrictEqual(new Position(0,-1));
-		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+			expect(marsRovers.position).toStrictEqual(new Position(0,-1));
+			expect(marsRovers.orientation).toStrictEqual(initialOrientation);
+		})
+
+		test("turn left", () => {
+			const turnLeft = ['l'];
+			marsRovers.applyCommands(turnLeft);
+
+			expect(marsRovers.position).toStrictEqual(initialPosition);
+			expect(marsRovers.orientation).toStrictEqual(new WestFacing());
+		})
+
+		test("turn right", () => {
+			const turnRight = ['r'];
+			marsRovers.applyCommands(turnRight);
+
+			expect(marsRovers.position).toStrictEqual(initialPosition);
+			expect(marsRovers.orientation).toStrictEqual(new EastFacing());
+		})
 	})
 
 	test("move forward multiple times", () => {
@@ -54,21 +72,7 @@ describe("Mars Rovers should",()=>{
 		expect(marsRovers.orientation).toStrictEqual(initialOrientation);
 	})
 
-	test("turn left", () => {
-		const turnLeft = ['l'];
-		marsRovers.applyCommands(turnLeft);
 
-		expect(marsRovers.position).toStrictEqual(initialPosition);
-		expect(marsRovers.orientation).toStrictEqual(new WestFacing());
-	})
-
-	test("turn right", () => {
-		const turnRight = ['r'];
-		marsRovers.applyCommands(turnRight);
-
-		expect(marsRovers.position).toStrictEqual(initialPosition);
-		expect(marsRovers.orientation).toStrictEqual(new EastFacing());
-	})
 
 	test('turn right multiple times to get the same orientation', ()=>{
 		const turnRightUntilGetSameInitialOrientation = ['r','r','r','r'];
