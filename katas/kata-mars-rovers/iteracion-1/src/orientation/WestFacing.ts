@@ -5,7 +5,7 @@ import Position from "../valueObjects/Position";
 
 class WestFacing implements Orientation{
     nextBackwardPositionRespectTo(position: Position): Position {
-        return undefined;
+        return position.addInX();
     }
     nextForwardPositionRespectTo(position: Position): Position {
         return position.substractInX();
