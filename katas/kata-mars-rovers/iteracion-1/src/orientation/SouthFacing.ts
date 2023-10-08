@@ -8,7 +8,7 @@ class SouthFacing implements Orientation{
         return undefined;
     }
     nextForwardPositionRespectTo(position: Position): Position {
-        return undefined;
+        return position.substractInY();
     }
     toTheLeft() {
         return new EastFacing();
