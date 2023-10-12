@@ -1,3 +1,5 @@
+import fc from 'fast-check';
+
 import Position from "../src/valueObjects/Position";
 import NorthFacing from "../src/orientation/NorthFacing";
 import MarsRovers from "../src/MarsRovers";
@@ -57,11 +59,19 @@ describe("Mars Rovers should",()=>{
 	})
 
 	test("move forward multiple times", () => {
-		const moveForwardMultipleTimes = ['f','f','f'];
+		const moveForwardMultipleTimes = (
+			fc.array(fc.constant('f'), {minLength: 1})
+		);
+		fc.assert(
+			fc.property(moveForwardMultipleTimes, (commands) => {
+				const marsRovers = MarsRovers.at(new Position(0,0), new NorthFacing());
 
-		const response = marsRovers.applyCommands(moveForwardMultipleTimes);
+				const response = marsRovers.applyCommands(commands);
 
-		expect(response).toBe('0:3:N');
+				const newExpectedPosition = commands.length;
+				expect(response).toBe(`0:${newExpectedPosition}:N`);
+			}
+		))
 	})
 
 	test("move backward multiple times", () => {
