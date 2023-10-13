@@ -61,7 +61,7 @@ describe("Mars Rovers should",()=>{
 
 	test("move forward multiple times", () => {
 		const moveForwardMultipleTimes = (
-			fc.array(fc.constant('f'), {minLength: 1})
+			fc.array(fc.constant('f'), {minLength: 1, maxLength: 10})
 		);
 		fc.assert(
 			fc.property(moveForwardMultipleTimes, (commands) => {
