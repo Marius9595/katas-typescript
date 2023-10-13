@@ -20,7 +20,7 @@ class MarsRovers{
         const firstCommand = commands[0];
         const restCommands = commands.slice(1);
         if(this.hasToMoveForwardDueTo(firstCommand)){
-            this._position = this._orientation.nextForwardPositionRespectTo(this._position);
+            this._position = this._grid.nextForwardPositionAccordingTo(this._position, this._orientation);
         }else if(this.hasToMoveBackwardDueTo(firstCommand)){
             this._position = this._orientation.nextBackwardPositionRespectTo(this._position);
         }else if(this.hasToTurnleftDueTo(firstCommand)){
