@@ -25,7 +25,11 @@ class MarsRovers{
             }
             this._position = newPosition;
         }else if(this.hasToMoveBackwardDueTo(firstCommand)){
-            this._position = this._grid.nextBackwardPositionAccordingTo(this._position, this._orientation);
+            const newPosition = this._grid.nextBackwardPositionAccordingTo(this._position, this._orientation);
+            if(newPosition.isEqualTo(this._position)){
+                return `O:${this._position.x}:${this._position.y}:${this._orientation.cardinalSymbol()}`
+            }
+            this._position = newPosition;
         }else if(this.hasToTurnleftDueTo(firstCommand)){
             this._orientation = this._orientation.toTheLeft();
         }else if(this.hasToTurnRightDueTo(firstCommand)){

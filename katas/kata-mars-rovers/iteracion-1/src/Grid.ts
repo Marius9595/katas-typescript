@@ -22,13 +22,21 @@ class Grid{
         return nextForwardPosition;
     }
 
+    nextBackwardPositionAccordingTo(position: Position, orientation: Orientation) {
+        const nextBackwardPosition=  orientation.nextBackwardPositionRespectTo(position);
+
+        if(this.isThereAnObstacleIn(nextBackwardPosition)){
+            return position;
+        }
+
+        return nextBackwardPosition;
+    }
+
     private isThereAnObstacleIn(nextForwardPosition: Position) {
         return this._obstacles.some(obstacle => obstacle.isEqualTo(nextForwardPosition));
     }
 
-    nextBackwardPositionAccordingTo(position: Position, orientation: Orientation) {
-        return orientation.nextBackwardPositionRespectTo(position);
-    }
+
 }
 
 export default Grid
