@@ -122,5 +122,15 @@ describe("Mars Rovers should",()=>{
 
 		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
 	})
+
+	test('detect obstacles when is moving to a forward position and report its last position', ()=>{
+		const obstacles = [new Position(0,2)];
+		const marsRovers = MarsRovers.in(new Grid(obstacles));
+		const moveForwardMultipleTimes = ['f','f','f'];
+
+		const response = marsRovers.applyCommands(moveForwardMultipleTimes);
+
+		expect(response).toBe('O:0:1:N');
+	})
 })
 
