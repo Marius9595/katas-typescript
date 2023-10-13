@@ -15,8 +15,8 @@ and a rover has state consisting of two parts:
 the compass direction it's facing (represented by a letter, one of N, S, E, W)
 Input
 * The input to the program is a string of one-character move commands:
-L and R rotate the direction the rover is facing
-M moves the rover one grid square forward in the direction it is currently facing
+l and r rotate the direction the rover is facing
+f moves the rover one grid square forward and b backwards in the direction it is currently facing
 If a rover reaches the end of the plateau, it wraps around the end of the grid.
 
 ## Output
