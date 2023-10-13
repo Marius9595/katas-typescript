@@ -13,6 +13,10 @@ class Grid{
     nextForwardPositionAccordingTo(position: Position, orientation: Orientation) {
         return orientation.nextForwardPositionRespectTo(position);
     }
+
+    nextBackwardPositionAccordingTo(position: Position, orientation: Orientation) {
+        return orientation.nextBackwardPositionRespectTo(position);
+    }
 }
 
 export default Grid

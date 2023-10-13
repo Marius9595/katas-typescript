@@ -22,7 +22,7 @@ class MarsRovers{
         if(this.hasToMoveForwardDueTo(firstCommand)){
             this._position = this._grid.nextForwardPositionAccordingTo(this._position, this._orientation);
         }else if(this.hasToMoveBackwardDueTo(firstCommand)){
-            this._position = this._orientation.nextBackwardPositionRespectTo(this._position);
+            this._position = this._grid.nextBackwardPositionAccordingTo(this._position, this._orientation);
         }else if(this.hasToTurnleftDueTo(firstCommand)){
             this._orientation = this._orientation.toTheLeft();
         }else if(this.hasToTurnRightDueTo(firstCommand)){
