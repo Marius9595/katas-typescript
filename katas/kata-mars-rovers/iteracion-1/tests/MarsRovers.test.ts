@@ -54,9 +54,18 @@ describe("Mars Rovers should",()=>{
 		})
 	})
 
+	test('wrap around the end of the grid when is moving to forward until its edge', () =>{
+		const moveToTheEdgeOfTheGrid = ['f','f','f','f','f','f','f','f','f','f'];
+
+		const response = marsRovers.applyCommands(moveToTheEdgeOfTheGrid);
+
+		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
+	})
+
+
 	test("move forward multiple times", () => {
 		const moveForwardMultipleTimes = (
-			fc.array(fc.constant('f'), {minLength: 1, maxLength: 10})
+			fc.array(fc.constant('f'), {minLength: 1, maxLength: 9})
 		);
 		fc.assert(
 			fc.property(moveForwardMultipleTimes, (commands) => {
