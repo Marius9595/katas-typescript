@@ -1,18 +1,13 @@
 import fc from 'fast-check';
 
 import Position from "../src/valueObjects/Position";
-import NorthFacing from "../src/orientation/NorthFacing";
 import MarsRovers from "../src/MarsRovers";
 import Grid from "../src/Grid";
 
 describe("Mars Rovers should",()=>{
-	let initialPosition: Position;
-	let initialOrientation = new NorthFacing();
 	let itIsInTheInitialPositionAndOrientation: string
 	let marsRovers: MarsRovers;
 	beforeEach(() => {
-		initialPosition = new Position(0,0);
-		initialOrientation = new NorthFacing();
 		itIsInTheInitialPositionAndOrientation = "0:0:N";
 		marsRovers = MarsRovers.in(new Grid());
 	})
