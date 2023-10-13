@@ -27,6 +27,10 @@ class Position{
     addInX() {
         return new Position(this.x + 1, this._y);
     }
+
+    isEqualTo(position: Position) {
+        return this.x === position.x && this.y === position.y;
+    }
 }
 
 export default Position;

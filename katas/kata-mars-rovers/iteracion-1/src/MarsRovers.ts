@@ -4,7 +4,6 @@ import Grid from "./Grid";
 import NorthFacing from "./orientation/NorthFacing";
 
 class MarsRovers{
-
     private constructor(
         private _position: Position,
         private _orientation: Orientation,
@@ -20,7 +19,11 @@ class MarsRovers{
         const firstCommand = commands[0];
         const restCommands = commands.slice(1);
         if(this.hasToMoveForwardDueTo(firstCommand)){
-            this._position = this._grid.nextForwardPositionAccordingTo(this._position, this._orientation);
+            const newPosition = this._grid.nextForwardPositionAccordingTo(this._position, this._orientation);
+            if(newPosition.isEqualTo(this._position)){
+                return `O:${this._position.x}:${this._position.y}:${this._orientation.cardinalSymbol()}`
+            }
+            this._position = newPosition;
         }else if(this.hasToMoveBackwardDueTo(firstCommand)){
             this._position = this._grid.nextBackwardPositionAccordingTo(this._position, this._orientation);
         }else if(this.hasToTurnleftDueTo(firstCommand)){
