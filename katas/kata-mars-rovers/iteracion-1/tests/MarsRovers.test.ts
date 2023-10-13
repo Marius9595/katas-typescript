@@ -3,6 +3,7 @@ import fc from 'fast-check';
 import Position from "../src/valueObjects/Position";
 import NorthFacing from "../src/orientation/NorthFacing";
 import MarsRovers from "../src/MarsRovers";
+import Grid from "../src/Grid";
 
 describe("Mars Rovers should",()=>{
 	let initialPosition: Position;
@@ -13,7 +14,7 @@ describe("Mars Rovers should",()=>{
 		initialPosition = new Position(0,0);
 		initialOrientation = new NorthFacing();
 		itIsInTheInitialPositionAndOrientation = "0:0:N";
-		marsRovers = MarsRovers.at(initialPosition, initialOrientation);
+		marsRovers = MarsRovers.in(new Grid());
 	})
 
 	test("do nothing without commands", ()=>{
@@ -64,7 +65,7 @@ describe("Mars Rovers should",()=>{
 		);
 		fc.assert(
 			fc.property(moveForwardMultipleTimes, (commands) => {
-				const marsRovers = MarsRovers.at(new Position(0,0), new NorthFacing());
+				const marsRovers = MarsRovers.in(new Grid());
 
 				const response = marsRovers.applyCommands(commands);
 

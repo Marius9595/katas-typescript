@@ -1,16 +1,15 @@
 import Position from "./valueObjects/Position";
 import Orientation from "./orientation/Orientation";
+import Grid from "./Grid";
+import NorthFacing from "./orientation/NorthFacing";
 
 class MarsRovers{
 
     private constructor(
         private _position: Position,
-        private _orientation: Orientation
+        private _orientation: Orientation,
+        private readonly _grid: Grid
     ) {
-    }
-
-    static at(position: Position, orientation: Orientation) {
-        return new MarsRovers(position,orientation);
     }
 
     applyCommands(commands: string[]) {
@@ -46,6 +45,14 @@ class MarsRovers{
 
     private hasToMoveForwardDueTo(firstCommand: string) {
         return firstCommand === 'f';
+    }
+
+    static in(grid: Grid) {
+        return new MarsRovers(
+            new Position(0, 0),
+            new NorthFacing(),
+            grid
+        );
     }
 }
 
