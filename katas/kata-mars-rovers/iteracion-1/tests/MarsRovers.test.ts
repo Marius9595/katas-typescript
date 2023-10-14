@@ -34,7 +34,7 @@ describe("Mars Rovers should",()=>{
 
 			const response = marsRovers.applyCommands(moveBackward);
 
-			expect(response).toBe('0:-1:N');
+			expect(response).toBe('0:9:N');
 		})
 
 		test("turn left", () => {
@@ -62,6 +62,33 @@ describe("Mars Rovers should",()=>{
 		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
 	})
 
+	test('wrap around the end of the grid when is moving to backward until its edge', () =>{
+		const moveToTheEdgeOfTheGrid = ['b'];
+
+		const response = marsRovers.applyCommands(moveToTheEdgeOfTheGrid);
+
+		expect(response).toBe('0:9:N');
+	})
+
+	test('move inside of grid',()=>{
+		const commands = (
+			fc.array(
+				fc.constantFrom('f', 'b', 'l', 'r'),
+				{minLength: 1}
+			)
+		);
+
+		fc.assert(
+			fc.property(commands, (commands) => {
+				const marsRovers = MarsRovers.in(new Grid());
+
+				const response = marsRovers.applyCommands(commands);
+
+				expect(response).toMatch(/^[0-9]:[0-9]:[N|S|E|W]$/);
+			})
+		)
+	})
+
 
 	test("move forward multiple times", () => {
 		const moveForwardMultipleTimes = (
@@ -79,14 +106,6 @@ describe("Mars Rovers should",()=>{
 		))
 	})
 
-	test("move backward multiple times", () => {
-		const moveBackwardMultipleTimes = ['b','b','b'];
-
-		const response = marsRovers.applyCommands(moveBackwardMultipleTimes);
-
-		expect(response).toBe('0:-3:N');
-	})
-
 	test('turn right multiple times to get the same orientation', ()=>{
 		const turnRightUntilGetSameInitialOrientation = ['r','r','r','r'];
 
@@ -100,7 +119,7 @@ describe("Mars Rovers should",()=>{
 
 		const response = marsRovers.applyCommands(turnLeftAndMoveForward);
 
-		expect(response).toBe('-1:0:W');
+		expect(response).toBe('9:0:W');
 	})
 
 	test('turn right and move backward', ()=>{
@@ -108,7 +127,7 @@ describe("Mars Rovers should",()=>{
 
 		const response = marsRovers.applyCommands(turnLeftAndMoveForward);
 
-		expect(response).toBe('-1:0:E');
+		expect(response).toBe('9:0:E');
 	})
 
 	test('turn right and move forward to get the same position and orientation', ()=>{
@@ -138,13 +157,13 @@ describe("Mars Rovers should",()=>{
 	})
 
 	test('detect obstacles when is moving to a backward position and report its last position', ()=>{
-		const obstacles = [new Position(0,-2)];
+		const obstacles = [new Position(0,8)];
 		const marsRovers = MarsRovers.in(new Grid(obstacles));
 		const moveForwardMultipleTimes = ['b','b','b'];
 
 		const response = marsRovers.applyCommands(moveForwardMultipleTimes);
 
-		expect(response).toBe('O:0:-1:N');
+		expect(response).toBe('O:0:9:N');
 	})
 })
 
