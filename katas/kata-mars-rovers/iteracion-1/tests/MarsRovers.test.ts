@@ -158,6 +158,8 @@ describe("Mars Rovers should",()=>{
 		)
 	})
 
+	//TODO: Put a obstacle in the initial position of mars rovers should not be allowed
+
 	test('detect obstacles when is moving to a forward position and report its last position', ()=>{
 		const obstacles = [new Position(0,2)];
 		const marsRovers = MarsRovers.in(new Grid(obstacles));
