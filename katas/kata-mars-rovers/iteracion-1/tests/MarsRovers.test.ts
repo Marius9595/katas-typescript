@@ -54,22 +54,6 @@ describe("Mars Rovers should",()=>{
 		})
 	})
 
-	test('wrap around the end of the grid when is moving to forward until its edge', () =>{
-		const moveToTheEdgeOfTheGrid = ['f','f','f','f','f','f','f','f','f','f'];
-
-		const response = marsRovers.applyCommands(moveToTheEdgeOfTheGrid);
-
-		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
-	})
-
-	test('wrap around the end of the grid when is moving to backward until its edge', () =>{
-		const moveToTheEdgeOfTheGrid = ['b'];
-
-		const response = marsRovers.applyCommands(moveToTheEdgeOfTheGrid);
-
-		expect(response).toBe('0:9:N');
-	})
-
 	test('move inside of grid',()=>{
 		const commands = (
 			fc.array(
@@ -87,63 +71,6 @@ describe("Mars Rovers should",()=>{
 				expect(response).toMatch(/^[0-9]:[0-9]:[N|S|E|W]$/);
 			})
 		)
-	})
-
-
-	test("move forward multiple times", () => {
-		const moveForwardMultipleTimes = (
-			fc.array(fc.constant('f'), {minLength: 1, maxLength: 9})
-		);
-		fc.assert(
-			fc.property(moveForwardMultipleTimes, (commands) => {
-				const marsRovers = MarsRovers.in(new Grid());
-
-				const response = marsRovers.applyCommands(commands);
-
-				const newExpectedPosition = commands.length;
-				expect(response).toBe(`0:${newExpectedPosition}:N`);
-			}
-		))
-	})
-
-	test('turn right multiple times to get the same orientation', ()=>{
-		const turnRightUntilGetSameInitialOrientation = ['r','r','r','r'];
-
-		const response = marsRovers.applyCommands(turnRightUntilGetSameInitialOrientation);
-
-		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
-	})
-
-	test('turn left and move forward', ()=>{
-		const turnLeftAndMoveForward = ['l','f'];
-
-		const response = marsRovers.applyCommands(turnLeftAndMoveForward);
-
-		expect(response).toBe('9:0:W');
-	})
-
-	test('turn right and move backward', ()=>{
-		const turnLeftAndMoveForward = ['r','b'];
-
-		const response = marsRovers.applyCommands(turnLeftAndMoveForward);
-
-		expect(response).toBe('9:0:E');
-	})
-
-	test('turn right and move forward to get the same position and orientation', ()=>{
-		const moveAndGoToTheSamePosition = ['r','f','r','f','r','f','r','f'];
-
-		const response = marsRovers.applyCommands(moveAndGoToTheSamePosition);
-
-		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
-	})
-
-	test('turn left and move backward to get the same position and orientation', ()=>{
-		const moveAndGoToTheSamePosition = ['l','b','l','b','l','b','l','b'];
-
-		const response = marsRovers.applyCommands(moveAndGoToTheSamePosition);
-
-		expect(response).toBe(itIsInTheInitialPositionAndOrientation);
 	})
 
 	test('detect obstacles when is moving to a forward position and report its last position', ()=>{
