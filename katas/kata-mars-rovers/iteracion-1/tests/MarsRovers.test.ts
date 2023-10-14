@@ -73,6 +73,91 @@ describe("Mars Rovers should",()=>{
 		)
 	})
 
+	test('be inside of grid when is moving backward or forward north facing',()=>{
+		const commands = (
+			fc.array(
+				fc.constantFrom('f', 'b'),
+				{minLength: 1}
+			)
+		);
+
+		fc.assert(
+			fc.property(commands, (commands) => {
+				const marsRovers = MarsRovers.in(new Grid());
+
+				const response = marsRovers.applyCommands(commands);
+
+				expect(response).toMatch(/^0:[0-9]:N$/);
+			})
+		)
+	})
+
+	test('be inside of grid when is moving backward or forward south facing',()=>{
+		const commands = (
+			fc.array(
+				fc.constantFrom('f', 'b'),
+				{minLength: 1}
+			)
+		);
+
+		fc.assert(
+			fc.property(commands, (commands) => {
+				const marsRovers = MarsRovers.in(new Grid());
+				const faceSouth = ['r','r'];
+
+				const response = marsRovers.applyCommands(
+					faceSouth.concat(commands)
+				);
+
+				expect(response).toMatch(/^0:[0-9]:S$/);
+			})
+		)
+	})
+
+	test('be inside of grid when is moving backward or forward west facing',()=>{
+		const commands = (
+			fc.array(
+				fc.constantFrom('f', 'b'),
+				{minLength: 1}
+			)
+		);
+
+		fc.assert(
+			fc.property(commands, (commands) => {
+				const marsRovers = MarsRovers.in(new Grid());
+				const faceWest = ['l'];
+
+				const response = marsRovers.applyCommands(
+					faceWest.concat(commands)
+				);
+
+				expect(response).toMatch(/^[0-9]:0:W$/);
+			})
+		)
+	})
+
+	test('be inside of grid when is moving backward or forward east facing',()=>{
+		const commands = (
+			fc.array(
+				fc.constantFrom('f', 'b'),
+				{minLength: 1}
+			)
+		);
+
+		fc.assert(
+			fc.property(commands, (commands) => {
+				const marsRovers = MarsRovers.in(new Grid());
+				const faceEast = ['r'];
+
+				const response = marsRovers.applyCommands(
+					faceEast.concat(commands)
+				);
+
+				expect(response).toMatch(/^[0-9]:0:E$/);
+			})
+		)
+	})
+
 	test('detect obstacles when is moving to a forward position and report its last position', ()=>{
 		const obstacles = [new Position(0,2)];
 		const marsRovers = MarsRovers.in(new Grid(obstacles));
